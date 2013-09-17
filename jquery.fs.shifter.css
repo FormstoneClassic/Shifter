@@ -1,0 +1,82 @@
+/*
+ * Shifter Plugin [Formstone Library]
+ * @author Ben Plum
+ * @version 0.0.1
+ *
+ * Copyright © 2013 Ben Plum <mr@benplum.com>
+ * Released under the MIT License <http://www.opensource.org/licenses/mit-license.php>
+ */
+ 
+ 	.shifter-navigation { display: none; opacity: 0; }
+	.shifter-handle { display: none; }
+	
+	/* Only on mobile */
+	@media screen and (max-width: 980px) {
+		body { overflow-x: hidden; overflow-y: scroll; position: relative; }
+		
+		.shifter-page { background: #fff; display: block; left: 0; min-height: 100%; overflow: hidden; position: relative; top: 0; z-index: 1;
+			-webkit-transition: -webkit-transform 0.2s ease-in-out !important;
+			   -moz-transition:    -moz-transform 0.2s ease-in-out !important;
+			    -ms-transition:     -ms-transform 0.2s ease-in-out !important;
+			     -o-transition:      -o-transform 0.2s ease-in-out !important;
+			        transition: 		transform 0.2s ease-in-out !important;
+			-webkit-transform: translate3D(0px, 0px, 0px);
+			   -moz-transform: translate3D(0px, 0px, 0px);
+			    -ms-transform: translate3D(0px, 0px, 0px);
+			     -o-transform: translate3D(0px, 0px, 0px);
+			        transform: translate3D(0px, 0px, 0px);
+		}
+		.shifter-navigation { background: #fff; box-shadow: inset 2px 0 2px rgba(0, 0, 0, 0.15); display: block; height: 100%; position: absolute; top: 0; width: 270px; z-index: 0; 
+			-webkit-transition: -webkit-transform 0.2s ease-in-out !important;
+			   -moz-transition:    -moz-transform 0.2s ease-in-out !important;
+			    -ms-transition:     -ms-transform 0.2s ease-in-out !important;
+			     -o-transition:      -o-transform 0.2s ease-in-out !important;
+			        transition: 		transform 0.2s ease-in-out !important;
+		}
+		.shifter-handle { background: url(fs-shifter-icon.png) no-repeat center center; cursor: pointer; content: ''; display: block; float: right; height: 30px; width: 30px;
+			overflow: hidden; text-indent: 110%; white-space: nowrap; /* hide text better */
+		}
+		
+		.shifter-initialized .shifter-navigation { opacity: 1; }
+		
+		/* Left */
+		.shifter-left .shifter-navigation { left: 0;
+			-webkit-transform: translate3D(-270px, 0px, 0px);
+			   -moz-transform: translate3D(-270px, 0px, 0px);
+			    -ms-transform: translate3D(-270px, 0px, 0px);
+			     -o-transform: translate3D(-270px, 0px, 0px);
+			        transform: translate3D(-270px, 0px, 0px);
+		}
+		.shifter-left.shifter-open .shifter-page { 
+			-webkit-transform: translate3D(270px, 0px, 0px);
+			   -moz-transform: translate3D(270px, 0px, 0px);
+			    -ms-transform: translate3D(270px, 0px, 0px);
+			     -o-transform: translate3D(270px, 0px, 0px);
+			        transform: translate3D(270px, 0px, 0px);
+		}
+		
+		/* Right */
+		.shifter-right .shifter-navigation { right: 0;
+			-webkit-transform: translate3D(270px, 0px, 0px);
+			   -moz-transform: translate3D(270px, 0px, 0px);
+			    -ms-transform: translate3D(270px, 0px, 0px);
+			     -o-transform: translate3D(270px, 0px, 0px);
+			        transform: translate3D(270px, 0px, 0px);
+		}
+		.shifter-right.shifter-open .shifter-page { 
+			-webkit-transform: translate3D(-270px, 0px, 0px);
+			   -moz-transform: translate3D(-270px, 0px, 0px);
+			    -ms-transform: translate3D(-270px, 0px, 0px);
+			     -o-transform: translate3D(-270px, 0px, 0px);
+			        transform: translate3D(-270px, 0px, 0px);
+		}
+		
+		/* Open */
+		.shifter-open .shifter-navigation { 
+			-webkit-transform: translate3D(0px, 0px, 0px);
+			   -moz-transform: translate3D(0px, 0px, 0px);
+			    -ms-transform: translate3D(0px, 0px, 0px);
+			     -o-transform: translate3D(0px, 0px, 0px);
+			        transform: translate3D(0px, 0px, 0px);
+		}
+	}
