@@ -1,7 +1,7 @@
 /*
  * Shifter Plugin [Formstone Library]
  * @author Ben Plum
- * @version 0.0.1
+ * @version 0.0.2
  *
  * Copyright © 2013 Ben Plum <mr@benplum.com>
  * Released under the MIT License <http://www.opensource.org/licenses/mit-license.php>
@@ -12,7 +12,8 @@
 	
 	/* Only on mobile */
 	@media screen and (max-width: 980px) {
-		body { overflow-x: hidden; overflow-y: scroll; position: relative; }
+		html { overflow-x: hidden; overflow-y: scroll; width: 100%; }
+		body { overflow-x: hidden; position: relative; width: 100%; }
 		
 		.shifter-page { background: #fff; display: block; left: 0; min-height: 100%; overflow: hidden; position: relative; top: 0; z-index: 1;
 			-webkit-transition: -webkit-transform 0.2s ease-in-out !important;
