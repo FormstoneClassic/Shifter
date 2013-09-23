@@ -1,7 +1,7 @@
 /*
  * Shifter Plugin [Formtone Library]
  * @author Ben Plum
- * @version 0.0.2
+ * @version 0.0.3
  *
  * Copyright © 2013 Ben Plum <mr@benplum.com>
  * Released under the MIT License <http://www.opensource.org/licenses/mit-license.php>
@@ -27,6 +27,8 @@ if (jQuery) (function($) {
 			}
 			
 			data.$body.removeClass("shifter-open");
+			// Close mobile keyboard
+			data.$nav.find("input").trigger("blur");
 		},
 		
 		// Destroy Shifter
@@ -37,7 +39,7 @@ if (jQuery) (function($) {
 		// Open Nav
 		open: function() {
 			data.$body.addClass("shifter-open");
-			data.$page.one("touchstart mousedown", pub.close);
+			data.$page.one("touchstart click", pub.close);
 		}
 	};
 	
@@ -53,8 +55,8 @@ if (jQuery) (function($) {
 		data.$nav  = $(".shifter-navigation");
 		
 		if (data.$page.length > 0 && data.$nav.length > 0) {
-			data.$body.addClass("shifter-initialized")
-					  .on("touchstart mousedown", ".shifter-handle", _handleClick);
+			data.$body.addClass("shifter")
+					  .on("touchstart click", ".shifter-handle", _handleClick);
 		} else {
 			console.warn("Shifter Elements Not Found");
 		}

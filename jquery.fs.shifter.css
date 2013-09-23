@@ -1,79 +1,80 @@
 /*
  * Shifter Plugin [Formstone Library]
  * @author Ben Plum
- * @version 0.0.2
+ * @version 0.0.3
  *
  * Copyright © 2013 Ben Plum <mr@benplum.com>
  * Released under the MIT License <http://www.opensource.org/licenses/mit-license.php>
  */
  
- 	.shifter-navigation { display: none; opacity: 0; }
-	.shifter-handle { display: none; }
+ 	.shifter .shifter-navigation { display: none; opacity: 0; }
+	.shifter .shifter-handle { display: none; }
 	
 	/* Only on mobile */
 	@media screen and (max-width: 980px) {
 		html { overflow-x: hidden; overflow-y: scroll; width: 100%; }
-		body { overflow-x: hidden; position: relative; width: 100%; }
+		body { position: relative; width: 100%; }
 		
-		.shifter-page { background: #fff; display: block; left: 0; min-height: 100%; overflow: hidden; position: relative; top: 0; z-index: 1;
-			-webkit-transition: -webkit-transform 0.2s ease-in-out !important;
-			   -moz-transition:    -moz-transform 0.2s ease-in-out !important;
-			    -ms-transition:     -ms-transform 0.2s ease-in-out !important;
-			     -o-transition:      -o-transform 0.2s ease-in-out !important;
-			        transition: 		transform 0.2s ease-in-out !important;
+		.shifter .shifter-page { background: #fff; box-shadow: 2px 0 2px rgba(0, 0, 0, 0.15); display: block; left: 0; min-height: 100%; overflow: hidden; position: relative; top: 0; z-index: 1;
 			-webkit-transform: translate3D(0px, 0px, 0px);
 			   -moz-transform: translate3D(0px, 0px, 0px);
 			    -ms-transform: translate3D(0px, 0px, 0px);
 			     -o-transform: translate3D(0px, 0px, 0px);
 			        transform: translate3D(0px, 0px, 0px);
 		}
-		.shifter-navigation { background: #fff; box-shadow: inset 2px 0 2px rgba(0, 0, 0, 0.15); display: block; height: 100%; position: absolute; top: 0; width: 270px; z-index: 0; 
+		.shifter .shifter-navigation { background: #fff; display: block; height: 100%; opacity: 1; pointer-events: none; position: absolute; top: 0; width: 270px; z-index: 0; }
+		
+		.shifter .shifter-page,
+		.shifter .shifter-navigation {
+			-webkit-backface-visibility: hidden;
+			   -moz-backface-visibility: hidden;
+			    -ms-backface-visibility: hidden;
+			     -o-backface-visibility: hidden;
+				    backface-visibility: hidden;
 			-webkit-transition: -webkit-transform 0.2s ease-in-out !important;
 			   -moz-transition:    -moz-transform 0.2s ease-in-out !important;
 			    -ms-transition:     -ms-transform 0.2s ease-in-out !important;
 			     -o-transition:      -o-transform 0.2s ease-in-out !important;
 			        transition: 		transform 0.2s ease-in-out !important;
 		}
-		.shifter-handle { background: url(fs-shifter-icon.png) no-repeat center center; cursor: pointer; content: ''; display: block; float: right; height: 30px; width: 30px;
+		.shifter .shifter-handle { background: url(fs-shifter-icon.png) no-repeat center center; cursor: pointer; content: ''; display: block; float: right; height: 30px; width: 30px;
 			overflow: hidden; text-indent: 110%; white-space: nowrap; /* hide text better */
 		}
 		
-		.shifter-initialized .shifter-navigation { opacity: 1; }
+		/* Right / Default */
+		.shifter .shifter-navigation { right: 0;
+			-webkit-transform: translate3D(0px, 0px, 0px);
+			   -moz-transform: translate3D(0px, 0px, 0px);
+			    -ms-transform: translate3D(0px, 0px, 0px);
+			     -o-transform: translate3D(0px, 0px, 0px);
+			        transform: translate3D(0px, 0px, 0px);
+		}
+		.shifter.shifter-open .shifter-page { 
+			-webkit-transform: translate3D(-270px, 0px, 0px);
+			   -moz-transform: translate3D(-270px, 0px, 0px);
+			    -ms-transform: translate3D(-270px, 0px, 0px);
+			     -o-transform: translate3D(-270px, 0px, 0px);
+			        transform: translate3D(-270px, 0px, 0px);
+		}
 		
 		/* Left */
-		.shifter-left .shifter-navigation { left: 0;
-			-webkit-transform: translate3D(-270px, 0px, 0px);
-			   -moz-transform: translate3D(-270px, 0px, 0px);
-			    -ms-transform: translate3D(-270px, 0px, 0px);
-			     -o-transform: translate3D(-270px, 0px, 0px);
-			        transform: translate3D(-270px, 0px, 0px);
+		.shifter.shifter-left .shifter-navigation { left: 0;
+			-webkit-transform: translate3D(0px, 0px, 0px);
+			   -moz-transform: translate3D(0px, 0px, 0px);
+			    -ms-transform: translate3D(0px, 0px, 0px);
+			     -o-transform: translate3D(0px, 0px, 0px);
+			        transform: translate3D(0px, 0px, 0px);
 		}
-		.shifter-left.shifter-open .shifter-page { 
+		.shifter.shifter-left.shifter-open .shifter-page { 
 			-webkit-transform: translate3D(270px, 0px, 0px);
 			   -moz-transform: translate3D(270px, 0px, 0px);
 			    -ms-transform: translate3D(270px, 0px, 0px);
 			     -o-transform: translate3D(270px, 0px, 0px);
 			        transform: translate3D(270px, 0px, 0px);
-		}
-		
-		/* Right */
-		.shifter-right .shifter-navigation { right: 0;
-			-webkit-transform: translate3D(270px, 0px, 0px);
-			   -moz-transform: translate3D(270px, 0px, 0px);
-			    -ms-transform: translate3D(270px, 0px, 0px);
-			     -o-transform: translate3D(270px, 0px, 0px);
-			        transform: translate3D(270px, 0px, 0px);
-		}
-		.shifter-right.shifter-open .shifter-page { 
-			-webkit-transform: translate3D(-270px, 0px, 0px);
-			   -moz-transform: translate3D(-270px, 0px, 0px);
-			    -ms-transform: translate3D(-270px, 0px, 0px);
-			     -o-transform: translate3D(-270px, 0px, 0px);
-			        transform: translate3D(-270px, 0px, 0px);
 		}
 		
 		/* Open */
-		.shifter-open .shifter-navigation { 
+		.shifter.shifter-open .shifter-navigation { pointer-events: all; 
 			-webkit-transform: translate3D(0px, 0px, 0px);
 			   -moz-transform: translate3D(0px, 0px, 0px);
 			    -ms-transform: translate3D(0px, 0px, 0px);
