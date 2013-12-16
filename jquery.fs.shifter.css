@@ -1,102 +1,96 @@
 /*
  * Shifter Plugin [Formstone Library]
  * @author Ben Plum
- * @version 0.0.7
+ * @version 1.0.0
  *
  * Copyright © 2013 Ben Plum <mr@benplum.com>
  * Released under the MIT License <http://www.opensource.org/licenses/mit-license.php>
  */
  
+ 	.shifter-open { overflow: hidden !important; }
+	.shifter-open .shifter-page * { pointer-events: none !important; }
+ 	
  	.shifter .shifter-navigation { display: none; opacity: 0; }
 	.shifter .shifter-handle { display: none; }
 	
-	/* Only on mobile */
-	@media screen and (max-width: 980px) {
-		html { width: 100%; }
-		body { position: relative; width: 100%; }
-		body.shifter-open { overflow: hidden; }
-		
-		.shifter .shifter-page { background: #fff; box-shadow: 2px 0 2px rgba(0, 0, 0, 0.15); display: block; left: 0; min-height: 100%; overflow: hidden; position: relative; top: 0; z-index: 1;
-			-webkit-transform: translate3D(0px, 0px, 0px);
-			   -moz-transform: translate3D(0px, 0px, 0px);
-			    -ms-transform: translate3D(0px, 0px, 0px);
-			     -o-transform: translate3D(0px, 0px, 0px);
-			        transform: translate3D(0px, 0px, 0px);
-		}
-		.shifter .shifter-navigation { background: #fff; display: block; height: 100%; opacity: 1; pointer-events: none; position: fixed; top: 0; width: 270px; z-index: 0; }
-		
-		.shifter .shifter-page,
-		.shifter .shifter-navigation { 
-			-webkit-backface-visibility: hidden;
-			   -moz-backface-visibility: hidden;
-			    -ms-backface-visibility: hidden;
-			     -o-backface-visibility: hidden;
-				    backface-visibility: hidden;
-			-webkit-transition: -webkit-transform 0.2s ease-in-out !important;
-			   -moz-transition:    -moz-transform 0.2s ease-in-out !important;
-			    -ms-transition:     -ms-transform 0.2s ease-in-out !important;
-			     -o-transition:      -o-transform 0.2s ease-in-out !important;
-			        transition: 		transform 0.2s ease-in-out !important;
-		}
-		.shifter .shifter-handle { background: url(fs-shifter-icon.png) no-repeat center center; cursor: pointer; content: ''; display: block; float: right; height: 30px; width: 30px;
-			overflow: hidden; text-indent: 110%; white-space: nowrap; /* hide text better */
-			-webkit-user-select: none;
-			   -moz-user-select: none;
-			    -ms-user-select: none;
-			     -o-user-select: none;
-				    user-select: none;
-		}
-		
-		/* Right / Default */
-		.shifter .shifter-navigation { right: 100%;
-			-webkit-transform: translate3D(0px, 0px, 0px);
-			   -moz-transform: translate3D(0px, 0px, 0px);
-			    -ms-transform: translate3D(0px, 0px, 0px);
-			     -o-transform: translate3D(0px, 0px, 0px);
-			        transform: translate3D(0px, 0px, 0px);
-		}
-		.shifter.shifter-activated .shifter-navigation { right: 0; }
-		
-		.shifter.shifter-open .shifter-page { 
-			-webkit-transform: translate3D(-270px, 0px, 0px);
-			   -moz-transform: translate3D(-270px, 0px, 0px);
-			    -ms-transform: translate3D(-270px, 0px, 0px);
-			     -o-transform: translate3D(-270px, 0px, 0px);
-			        transform: translate3D(-270px, 0px, 0px);
-		}
-		
-		/* Left */
-		.shifter.shifter-left .shifter-navigation { left: 100%;
-			-webkit-transform: translate3D(0px, 0px, 0px);
-			   -moz-transform: translate3D(0px, 0px, 0px);
-			    -ms-transform: translate3D(0px, 0px, 0px);
-			     -o-transform: translate3D(0px, 0px, 0px);
-			        transform: translate3D(0px, 0px, 0px);
-		}
-		.shifter.shifter-left.shifter-activated .shifter-navigation { left: 0; }
-		
-		.shifter.shifter-left.shifter-open .shifter-page { 
-			-webkit-transform: translate3D(270px, 0px, 0px);
-			   -moz-transform: translate3D(270px, 0px, 0px);
-			    -ms-transform: translate3D(270px, 0px, 0px);
-			     -o-transform: translate3D(270px, 0px, 0px);
-			        transform: translate3D(270px, 0px, 0px);
-		}
-		
-		/* Open */
-		.shifter.shifter-open .shifter-navigation { pointer-events: all; 
-			-webkit-transform: translate3D(0px, 0px, 0px);
-			   -moz-transform: translate3D(0px, 0px, 0px);
-			    -ms-transform: translate3D(0px, 0px, 0px);
-			     -o-transform: translate3D(0px, 0px, 0px);
-			        transform: translate3D(0px, 0px, 0px);
-		}
+	.shifter-active .shifter-page { background: #fff; box-shadow: 2px 0 2px rgba(0, 0, 0, 0.15); display: block; left: 0; min-height: 100%; overflow: hidden; position: relative; top: 0; z-index: 1;
+		-webkit-transform: translate3D(0px, 0px, 0px);
+		   -moz-transform: translate3D(0px, 0px, 0px);
+		    -ms-transform: translate3D(0px, 0px, 0px);
+		     -o-transform: translate3D(0px, 0px, 0px);
+		        transform: translate3D(0px, 0px, 0px);
+	}
+	.shifter-active .shifter-navigation { background: #fff; display: block; height: 100%; opacity: 1; pointer-events: none; position: fixed; top: 0; width: 270px; z-index: 0; }
+	
+	.shifter-active .shifter-page,
+	.shifter-active .shifter-navigation { 
+		-webkit-backface-visibility: hidden;
+		   -moz-backface-visibility: hidden;
+		    -ms-backface-visibility: hidden;
+		     -o-backface-visibility: hidden;
+			    backface-visibility: hidden;
+		-webkit-transition: -webkit-transform 0.2s ease !important;
+		   -moz-transition:    -moz-transform 0.2s ease !important;
+		    -ms-transition:     -ms-transform 0.2s ease !important;
+		     -o-transition:      -o-transform 0.2s ease !important;
+		        transition: 		transform 0.2s ease !important;
+	}
+	.shifter-active .shifter-handle { background: url(fs-shifter-icon.png) no-repeat center center; cursor: pointer; content: ''; display: block; float: right; height: 30px; width: 30px;
+		overflow: hidden; text-indent: 110%; white-space: nowrap;
+		-webkit-user-select: none;
+		   -moz-user-select: none;
+		    -ms-user-select: none;
+		     -o-user-select: none;
+			    user-select: none;
+	}
+	
+	/* Right / Default */
+	.shifter-active .shifter-navigation { right: 0;
+		-webkit-transform: translate3D(0px, 0px, 0px);
+		   -moz-transform: translate3D(0px, 0px, 0px);
+		    -ms-transform: translate3D(0px, 0px, 0px);
+		     -o-transform: translate3D(0px, 0px, 0px);
+		        transform: translate3D(0px, 0px, 0px);
+	}
+	
+	.shifter-open .shifter-page { 
+		-webkit-transform: translate3D(-270px, 0px, 0px);
+		   -moz-transform: translate3D(-270px, 0px, 0px);
+		    -ms-transform: translate3D(-270px, 0px, 0px);
+		     -o-transform: translate3D(-270px, 0px, 0px);
+		        transform: translate3D(-270px, 0px, 0px);
+	}
+	
+	/* Left */
+	.shifter-active.shifter-left .shifter-navigation { left: 0;
+		-webkit-transform: translate3D(0px, 0px, 0px);
+		   -moz-transform: translate3D(0px, 0px, 0px);
+		    -ms-transform: translate3D(0px, 0px, 0px);
+		     -o-transform: translate3D(0px, 0px, 0px);
+		        transform: translate3D(0px, 0px, 0px);
+	}
+	
+	.shifter-active.shifter-left.shifter-open .shifter-page { 
+		-webkit-transform: translate3D(270px, 0px, 0px);
+		   -moz-transform: translate3D(270px, 0px, 0px);
+		    -ms-transform: translate3D(270px, 0px, 0px);
+		     -o-transform: translate3D(270px, 0px, 0px);
+		        transform: translate3D(270px, 0px, 0px);
+	}
+	
+	/* Open */
+	.shifter-open .shifter-navigation { pointer-events: all; 
+		-webkit-transform: translate3D(0px, 0px, 0px);
+		   -moz-transform: translate3D(0px, 0px, 0px);
+		    -ms-transform: translate3D(0px, 0px, 0px);
+		     -o-transform: translate3D(0px, 0px, 0px);
+		        transform: translate3D(0px, 0px, 0px);
 	}
 	
 	/* IE 10 ONLY */
-	@media screen and (max-width: 980px) and (-ms-high-contrast: active), (-ms-high-contrast: none) { 
+	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { 
 		/* Right / Default */
-		.shifter .shifter-navigation { right: 0;
+		.shifter-active .shifter-navigation { right: 0;
 			-webkit-transform: translate3D(270px, 0px, 0px);
 			   -moz-transform: translate3D(270px, 0px, 0px);
 			    -ms-transform: translate3D(270px, 0px, 0px);
@@ -105,7 +99,7 @@
 		}
 		
 		/* Left */
-		.shifter.shifter-left .shifter-navigation { left: 0;
+		.shifter-active.shifter-left .shifter-navigation { left: 0;
 			-webkit-transform: translate3D(-270px, 0px, 0px);
 			   -moz-transform: translate3D(-270px, 0px, 0px);
 			    -ms-transform: translate3D(-270px, 0px, 0px);
@@ -114,7 +108,7 @@
 		}
 		
 		/* Open */
-		.shifter.shifter-open .shifter-navigation { pointer-events: all; 
+		.shifter-open .shifter-navigation { pointer-events: all; 
 			-webkit-transform: translate3D(0px, 0px, 0px);
 			   -moz-transform: translate3D(0px, 0px, 0px);
 			    -ms-transform: translate3D(0px, 0px, 0px);

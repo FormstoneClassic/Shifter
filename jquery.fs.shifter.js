@@ -1,7 +1,7 @@
 /*
  * Shifter Plugin [Formtone Library]
  * @author Ben Plum
- * @version 0.0.7
+ * @version 1.0.0
  *
  * Copyright © 2013 Ben Plum <mr@benplum.com>
  * Released under the MIT License <http://www.opensource.org/licenses/mit-license.php>
@@ -11,35 +11,65 @@ if (jQuery) (function($) {
 		
 	// Default Options
 	var options = {
+		maxWidth: "980px"
 	};
 	
 	// Internal Data
-	var data = {};
+	var initialized = false,
+		data = {};
 	
 	// Public Methods
 	var pub = {
 		
-		// Close Nav
-		close: function(e) {
-			if (e.preventDefault) {
-				e.preventDefault();
-				e.stopPropagation();
+		// Close Navigation
+		close: function() {
+			if (initialized) {
+				data.$body.removeClass("shifter-open");
+				// Close mobile keyboard
+				data.$nav.find("input").trigger("blur");
 			}
-			
-			data.$body.removeClass("shifter-open");
-			// Close mobile keyboard
-			data.$nav.find("input").trigger("blur");
+		},
+		
+		// Enable Shifter
+		enable: function() {
+			if (initialized) {
+				data.$body.addClass("shifter-active");
+			}
+		},
+		
+		// Set Defaults
+		defaults: function(opts) {
+			options = $.extend(options, opts || {});
 		},
 		
 		// Destroy Shifter
 		destroy: function() {
-			// ???
+			if (initialized) {
+				data.$body.removeClass("shifter shifter-active shifter-open")
+					      .off("touchstart.shifter click.shifter");
+				
+				// Navtive MQ Support
+				if (window.matchMedia !== undefined) {
+					data.mediaQuery.removeListener(_respond);
+				}
+				
+				data = {};
+			}
 		},
 		
-		// Open Nav
+		// Disable Shifter
+		disable: function() {
+			if (initialized) {
+				data.$body.removeClass("shifter-active");
+			}
+		},
+		
+		// Open Navigation
 		open: function() {
-			data.$body.addClass("shifter-open shifter-activated");
-			data.$page.one("touchstart click", pub.close);
+			if (initialized) {
+				data.$body.addClass("shifter-open");
+				data.$page.one("touchstart.shifter click.shifter", _handleClick);
+			}
 		}
 	};
 	
@@ -55,14 +85,32 @@ if (jQuery) (function($) {
 		data.$nav  = $(".shifter-navigation");
 		
 		if (data.$page.length > 0 && data.$nav.length > 0) {
+			initialized = true;
+			
 			data.$body.addClass("shifter")
-					  .on("touchstart click", ".shifter-handle", _handleClick);
+					  .on("touchstart.shifter click.shifter", ".shifter-handle", _handleClick);
+			
+			// Navtive MQ Support
+			if (window.matchMedia !== undefined) {
+				data.mediaQuery = window.matchMedia("(max-width:" + (options.maxWidth == Infinity ? "100000px" : options.maxWidth) + ")");
+				data.mediaQuery.addListener(_respond);
+				_respond();
+			}
 		} else {
 			console.warn("Shifter Elements Not Found");
 		}
 	}
 	
-	// On handle click
+	// Handle media query change
+	function _respond() {
+		if (data.mediaQuery.matches) {
+			pub.enable();
+		} else {
+			pub.disable();
+		}
+	}
+	
+	// Hanle clicks
 	function _handleClick(e) {
 		e.preventDefault();
 		e.stopPropagation();
