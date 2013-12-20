@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    	
+		<title>Shifter Demo</title>
+		
+		<link href="http://fonts.googleapis.com/css?family=Lato:300,400,900" rel="stylesheet" type="text/css" media="all" />
+		<link href="http://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet" type="text/css">
+		<link href="http://www.benplum.com/css/demo.css" rel="stylesheet" type="text/css" media="all" />
+		
+		<!--[if LTE IE 8]>
+			<link href="http://www.benplum.com/css/demo.ie.css" rel="stylesheet" type="text/css" media="all" />
+		<![endif]-->
+		
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="http://www.benplum.com/js/demo.js"></script>
+		
+		<!--[if LTE IE 9]>
+			<script src="ie/html5.js"></script>
+		<![endif]-->
+		<!--[if IE 9]>
+			<script src="ie/matchMedia.ie9.js"></script>
+		<![endif]-->
+		<!--[if LTE IE 8]>
+			<script src="ie/matchMedia.ie8.js"></script>
+		<![endif]-->
+		
+		<script src="../jquery.fs.shifter.js"></script>
+		<link href="../jquery.fs.shifter.css" rel="stylesheet" type="text/css" media="all" />
+		
+		<style>
+			.shifter-handle { margin: 10px; }
+			.shifter-navigation { padding: 30px; }
+			.shifter-navigation a { color: #666; display: block; font-size: 16px; margin: 0 0 10px; }
+		</style>
+		
+		<script>
+			$(document).ready(function() {
+				$.shifter({
+					maxWidth: Infinity
+				});
+			});
+		</script>
+	</head>
+	<body class="gridlock demo shifter">
+		<div class="shifter-page">
+			<span class="shifter-handle">Menu</span>
+			<header class="header">
+				<div class="row">
+					<div class="mobile-full tablet-full desktop-8 desktop-push-2">
+						<h1>Shifter Demo</h1>
+						<hr />
+						<p>A jQuery plugin for simple slide-out mobile navigation. <a href="http://www.benplum.com/formstone/shifter/" class="no-pronto">Learn More.</a></p>
+					</div>
+				</div>
+			</header>
+			<article class="row page">
+				<div class="mobile-full tablet-full desktop-8 desktop-push-2">
+				
+					<!-- Basic -->
+					<h2>Basic</h2>
+					<p>Shifter works by checking for target elements in the DOM and binding events to them. This allows you to markup and style pages anyway you'd like, but at a minimum you need three specifically classed elements (including the <code>body</code> tag):</p>
+					
+					<pre><code class="language-javascript">$.shifter();</code></pre>
+					<pre><code class="language-markup">&lt;html&gt;
+	&lt;body class="shifter"&gt;
+		&lt;div class="shifter-page"&gt;
+			&lt;!-- Page Content --&gt;
+		&lt;/div&gt;
+		&lt;nav class="shifter-navigation"&gt;
+			&lt;!-- Navigation --&gt;
+		&lt;/nav&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+					
+					<!--
+					<h5>Demo</h5>
+					<p>Check out the handle at the top-right of this page!</p>
+					-->
+					
+					<!-- Custom -->
+					<h2>Custom Widths</h2>
+					<p>By default, Shifter will activate itself on screens smaller then 980 pixels wide. You can specify a different width by setting the <code>maxWidth</code> option on initialization.</p>
+					
+					<pre><code class="language-javascript">$.shifter({
+	maxWidth: Infinity
+});</code></pre>
+					
+					<h5>Demo</h5>
+					<p>Click or tap the handle at the top-right of this page!</p>
+					<br />
+					
+					<!-- IE -->
+					<h2>IE Support</h2>
+					<p>When supporting IE you will need to include a <a href="https://gist.github.com/benplum/8045366" target="_blank">HTML5 enabler</a> and matchMedia polyfill (<a href="https://gist.github.com/benplum/8045336" target="_blank">IE 8</a>, <a href="https://gist.github.com/benplum/8045327" target="_blank">IE 9</a>).</p>
+					
+				</div>
+			</article>
+		</div>
+		<nav class="shifter-navigation">
+			<a href="#1">Link One</a>
+			<a href="#2">Link Two</a>
+			<a href="#3">Link Three</a>
+			<a href="#4">Link Four</a>
+			<a href="#5">Link Five</a>
+		</nav>
+	</body>
+</html>
