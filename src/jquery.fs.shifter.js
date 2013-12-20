@@ -1,3 +1,11 @@
+/* 
+ * Shifter v1.0.1 - 2013-12-20 
+ * A jQuery plugin for simple slide-out mobile navigation. 
+ * http://www.benplum.com/formstone/shifter/ 
+ * 
+ * Copyright 2013 Ben Plum; MIT Licensed 
+ */ 
+
 ;(function ($, window) {
 	"use strict";
 		
@@ -17,7 +25,8 @@
 		close: function() {
 			if (initialized) {
 				data.$body.removeClass("shifter-open");
-				// Close mobile keyboard
+				data.$page.off(".shifter");
+				// Close mobile keyboard if open
 				data.$nav.find("input").trigger("blur");
 			}
 		},
