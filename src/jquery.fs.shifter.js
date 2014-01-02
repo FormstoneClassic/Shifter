@@ -1,27 +1,24 @@
-/* 
- * Shifter v1.0.1 - 2013-12-20 
- * A jQuery plugin for simple slide-out mobile navigation. 
- * http://www.benplum.com/formstone/shifter/ 
- * 
- * Copyright 2013 Ben Plum; MIT Licensed 
- */ 
-
 ;(function ($, window) {
 	"use strict";
-		
-	// Default Options
+	
+	var initialized = false,
+		data = {};
+	
+	/**
+	 * @options
+	 * @param maxWidth [string] <'980px'> "Width at which to auto-disable plugin”
+	 */
 	var options = {
 		maxWidth: "980px"
 	};
 	
-	// Internal Data
-	var initialized = false,
-		data = {};
-	
-	// Public Methods
 	var pub = {
 		
-		// Close Navigation
+		/**
+		 * @method 
+		 * @name close
+		 * @description Closes navigation if open
+		 */
 		close: function() {
 			if (initialized) {
 				data.$body.removeClass("shifter-open");
@@ -31,19 +28,32 @@
 			}
 		},
 		
-		// Enable Shifter
+		/**
+		 * @method 
+		 * @name enable
+		 * @description Enables navigation system
+		 */
 		enable: function() {
 			if (initialized) {
 				data.$body.addClass("shifter-active");
 			}
 		},
 		
-		// Set Defaults
+		/**
+		 * @method 
+		 * @name defaults
+		 * @description Sets default plugin options
+		 * @param opts [object] <{}> Options object
+		 */
 		defaults: function(opts) {
 			options = $.extend(options, opts || {});
 		},
 		
-		// Destroy Shifter
+		/**
+		 * @method 
+		 * @name destroy
+		 * @description Removes instance of plugin
+		 */
 		destroy: function() {
 			if (initialized) {
 				data.$body.removeClass("shifter shifter-active shifter-open")
@@ -58,25 +68,36 @@
 			}
 		},
 		
-		// Disable Shifter
+		/**
+		 * @method 
+		 * @name disable
+		 * @description Disables navigation system
+		 */
 		disable: function() {
 			if (initialized) {
 				data.$body.removeClass("shifter-active");
 			}
 		},
 		
-		// Open Navigation
+		/**
+		 * @method 
+		 * @name open
+		 * @description Opens navigation if closed
+		 */
 		open: function() {
 			if (initialized) {
 				data.$body.addClass("shifter-open");
-				data.$page.one("touchstart.shifter click.shifter", _handleClick);
+				data.$page.one("touchstart.shifter click.shifter", _toggle);
 			}
 		}
 	};
 	
-	// Private Methods
-	
-	// Initialize
+	/**
+	 * @method private
+	 * @name _init
+	 * @description Initializes plugin
+	 * @param opts [object] "Initialization options"
+	 */
 	function _init(opts) {
 		// Local options
 		options = $.extend(options, opts || {});
@@ -89,7 +110,7 @@
 			initialized = true;
 			
 			data.$body.addClass("shifter")
-					  .on("touchstart.shifter click.shifter", ".shifter-handle", _handleClick);
+					  .on("touchstart.shifter click.shifter", ".shifter-handle", _toggle);
 			
 			// Navtive MQ Support
 			if (window.matchMedia !== undefined) {
@@ -100,7 +121,11 @@
 		}
 	}
 	
-	// Handle media query change
+	/**
+	 * @method private
+	 * @name _respond
+	 * @description Handles media query match change
+	 */
 	function _respond() {
 		if (data.mediaQuery.matches) {
 			pub.enable();
@@ -109,8 +134,13 @@
 		}
 	}
 	
-	// Hanle clicks
-	function _handleClick(e) {
+	/**
+	 * @method private
+	 * @name _toggle
+	 * @description Determines proper click / touch action
+	 * @param e [object] "Event data"
+	 */
+	function _toggle(e) {
 		e.preventDefault();
 		e.stopPropagation();
 		
@@ -121,7 +151,6 @@
 		}
 	}
 	
-	// Define Plugin
 	$.shifter = function(method) {
 		if (pub[method]) {
 			return pub[method].apply(this, Array.prototype.slice.call(arguments, 1));
