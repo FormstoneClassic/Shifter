@@ -33,6 +33,7 @@
 		 * @method 
 		 * @name close
 		 * @description Closes navigation if open
+		 * @example $.shifter("close");
 		 */
 		close: function() {
 			if (initialized) {
@@ -47,6 +48,7 @@
 		 * @method 
 		 * @name enable
 		 * @description Enables navigation system
+		 * @example $.shifter("enable");
 		 */
 		enable: function() {
 			if (initialized) {
@@ -59,6 +61,7 @@
 		 * @name defaults
 		 * @description Sets default plugin options
 		 * @param opts [object] <{}> "Options object"
+		 * @example $.shifter("defaults", opts);
 		 */
 		defaults: function(opts) {
 			options = $.extend(options, opts || {});
@@ -68,6 +71,7 @@
 		 * @method 
 		 * @name destroy
 		 * @description Removes instance of plugin
+		 * @example $.shifter("destroy");
 		 */
 		destroy: function() {
 			if (initialized) {
@@ -87,6 +91,7 @@
 		 * @method 
 		 * @name disable
 		 * @description Disables navigation system
+		 * @example $.shifter("disable");
 		 */
 		disable: function() {
 			if (initialized) {
@@ -98,6 +103,7 @@
 		 * @method 
 		 * @name open
 		 * @description Opens navigation if closed
+		 * @example $.shifter("open");
 		 */
 		open: function() {
 			if (initialized) {
