@@ -6,7 +6,7 @@
 	
 	/**
 	 * @options
-	 * @param maxWidth [string] <'980px'> "Width at which to auto-disable plugin”
+	 * @param maxWidth [string] <'980px'> "Width at which to auto-disable plugin"
 	 */
 	var options = {
 		maxWidth: "980px"
@@ -43,7 +43,7 @@
 		 * @method 
 		 * @name defaults
 		 * @description Sets default plugin options
-		 * @param opts [object] <{}> Options object
+		 * @param opts [object] <{}> "Options object"
 		 */
 		defaults: function(opts) {
 			options = $.extend(options, opts || {});
@@ -87,7 +87,7 @@
 		open: function() {
 			if (initialized) {
 				data.$body.addClass("shifter-open");
-				data.$page.one("touchstart.shifter click.shifter", _toggle);
+				data.$page.one("touchstart.shifter click.shifter", _onClick);
 			}
 		}
 	};
@@ -110,7 +110,7 @@
 			initialized = true;
 			
 			data.$body.addClass("shifter")
-					  .on("touchstart.shifter click.shifter", ".shifter-handle", _toggle);
+					  .on("touchstart.shifter click.shifter", ".shifter-handle", _onClick);
 			
 			// Navtive MQ Support
 			if (window.matchMedia !== undefined) {
@@ -136,11 +136,11 @@
 	
 	/**
 	 * @method private
-	 * @name _toggle
+	 * @name _onClick
 	 * @description Determines proper click / touch action
 	 * @param e [object] "Event data"
 	 */
-	function _toggle(e) {
+	function _onClick(e) {
 		e.preventDefault();
 		e.stopPropagation();
 		
