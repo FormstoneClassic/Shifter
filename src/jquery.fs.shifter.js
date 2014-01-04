@@ -65,7 +65,7 @@
 				
 				// Navtive MQ Support
 				if (window.matchMedia !== undefined) {
-					data.mediaQuery.removeListener(_respond);
+					data.mediaQuery.removeListener(_onRespond);
 				}
 				
 				data = {};
@@ -121,18 +121,18 @@
 			// Navtive MQ Support
 			if (window.matchMedia !== undefined) {
 				data.mediaQuery = window.matchMedia("(max-width:" + (options.maxWidth === Infinity ? "100000px" : options.maxWidth) + ")");
-				data.mediaQuery.addListener(_respond);
-				_respond();
+				data.mediaQuery.addListener(_onRespond);
+				_onRespond();
 			}
 		}
 	}
 	
 	/**
 	 * @method private
-	 * @name _respond
+	 * @name _onRespond
 	 * @description Handles media query match change
 	 */
-	function _respond() {
+	function _onRespond() {
 		if (data.mediaQuery.matches) {
 			pub.enable();
 		} else {
