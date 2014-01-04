@@ -3,8 +3,8 @@
 
 A jQuery plugin for simple slide-out mobile navigation. Part of the Formstone Library. 
 
-- [Demo](http://www.benplum.com/components/Shifter/demo/index.html) 
-- [Documentation](http://www.benplum.com/formstone/shifter/) 
+- [Demo](http://formstone.it/components/Shifter/demo/index.html) 
+- [Documentation](http://formstone.it/shifter/) 
 
 #### Bower Support 
 `bower install Shifter`

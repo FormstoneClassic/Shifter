@@ -2,15 +2,15 @@
   "name": "Shifter",
   "id": "shifter",
   "codename": "jquery.fs.shifter",
-  "version": "1.0.4",
+  "version": "3.0.0",
   "description": "A jQuery plugin for simple slide-out mobile navigation. Part of the Formstone Library.",
   "keywords": [ "javascript", "jquery", "responsive", "mobile", "navigation", "menu", "ui", "formstone", "benplum" ],
   "repository": {
     "type": "git",
     "url": "https://github.com/benplum/Shifter"
   },
-  "homepage": "http://www.benplum.com/formstone/shifter/",
-  "demo": "http://www.benplum.com/components/Shifter/demo/index.html",
+  "homepage": "http://formstone.it/shifter/",
+  "demo": "http://formstone.it/components/Shifter/demo/index.html",
   "license": "MIT",
   "author": {
     "name": "Ben Plum",

@@ -1,6 +1,6 @@
 {
   "name": "shifter",
-  "version": "1.0.4",
+  "version": "3.0.0",
   "title": "Shifter",
   "author": {
     "name": "Ben Plum",
@@ -16,7 +16,7 @@
   "dependencies": {
     "jquery": ">=1.7"
   },
-  "homepage": "http://www.benplum.com/formstone/shifter/",
+  "homepage": "http://formstone.it/shifter/",
   "description": "A jQuery plugin for simple slide-out mobile navigation. Part of the Formstone Library.",
   "keywords": [
     "javascript",
@@ -29,8 +29,8 @@
     "formstone",
     "benplum"
   ],
-  "docs": "http://www.benplum.com/formstone/shifter/",
-  "demo": "http://www.benplum.com/formstone/shifter/",
+  "docs": "http://formstone.it/shifter/",
+  "demo": "http://formstone.it/shifter/",
   "download": "https://github.com/benplum/Shifter",
   "bugs": "https://github.com/benplum/Shifter/issues"
 }
