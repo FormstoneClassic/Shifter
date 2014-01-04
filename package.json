@@ -10,6 +10,7 @@
     "url": "https://github.com/benplum/Shifter"
   },
   "homepage": "http://www.benplum.com/formstone/shifter/",
+  "demo": "http://www.benplum.com/components/Shifter/demo/index.html",
   "license": "MIT",
   "author": {
     "name": "Ben Plum",
