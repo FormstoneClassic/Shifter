@@ -14,7 +14,8 @@
     "jquery.fs.shifter.css"
   ],
   "ignore": [
-    "*.json",
-    "Gruntfile.js"
+    "*.jquery.json",
+    "Gruntfile.js",
+    "src/"
   ]
 }

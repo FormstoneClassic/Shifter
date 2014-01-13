@@ -1,5 +1,5 @@
 /* 
- * Shifter v3.0.1 - 2014-01-12 
+ * Shifter v3.0.1 - 2014-01-13 
  * A jQuery plugin for simple slide-out mobile navigation. Part of the Formstone Library. 
  * http://formstone.it/shifter/ 
  * 
@@ -8,10 +8,10 @@
 
 ;(function ($, window) {
 	"use strict";
-	
+
 	var initialized = false,
 		data = {};
-	
+
 	/**
 	 * @options
 	 * @param maxWidth [string] <'980px'> "Width at which to auto-disable plugin"
@@ -19,11 +19,11 @@
 	var options = {
 		maxWidth: "980px"
 	};
-	
+
 	var pub = {
-		
+
 		/**
-		 * @method 
+		 * @method
 		 * @name close
 		 * @description Closes navigation if open
 		 * @example $.shifter("close");
@@ -36,9 +36,9 @@
 				data.$nav.find("input").trigger("blur");
 			}
 		},
-		
+
 		/**
-		 * @method 
+		 * @method
 		 * @name enable
 		 * @description Enables navigation system
 		 * @example $.shifter("enable");
@@ -48,9 +48,9 @@
 				data.$body.addClass("shifter-active");
 			}
 		},
-		
+
 		/**
-		 * @method 
+		 * @method
 		 * @name defaults
 		 * @description Sets default plugin options
 		 * @param opts [object] <{}> "Options object"
@@ -59,9 +59,9 @@
 		defaults: function(opts) {
 			options = $.extend(options, opts || {});
 		},
-		
+
 		/**
-		 * @method 
+		 * @method
 		 * @name destroy
 		 * @description Removes instance of plugin
 		 * @example $.shifter("destroy");
@@ -70,18 +70,18 @@
 			if (initialized) {
 				data.$body.removeClass("shifter shifter-active shifter-open")
 					      .off("touchstart.shifter click.shifter");
-				
+
 				// Navtive MQ Support
 				if (window.matchMedia !== undefined) {
 					data.mediaQuery.removeListener(_onRespond);
 				}
-				
+
 				data = {};
 			}
 		},
-		
+
 		/**
-		 * @method 
+		 * @method
 		 * @name disable
 		 * @description Disables navigation system
 		 * @example $.shifter("disable");
@@ -91,9 +91,9 @@
 				data.$body.removeClass("shifter-active");
 			}
 		},
-		
+
 		/**
-		 * @method 
+		 * @method
 		 * @name open
 		 * @description Opens navigation if closed
 		 * @example $.shifter("open");
@@ -105,7 +105,7 @@
 			}
 		}
 	};
-	
+
 	/**
 	 * @method private
 	 * @name _init
@@ -115,17 +115,17 @@
 	function _init(opts) {
 		// Local options
 		options = $.extend(options, opts || {});
-		
+
 		data.$body = $("body");
 		data.$page = $(".shifter-page");
 		data.$nav  = $(".shifter-navigation");
-		
+
 		if (data.$page.length > 0 && data.$nav.length > 0) {
 			initialized = true;
-			
+
 			data.$body.addClass("shifter")
 					  .on("touchstart.shifter click.shifter", ".shifter-handle", _onClick);
-			
+
 			// Navtive MQ Support
 			if (window.matchMedia !== undefined) {
 				data.mediaQuery = window.matchMedia("(max-width:" + (options.maxWidth === Infinity ? "100000px" : options.maxWidth) + ")");
@@ -134,7 +134,7 @@
 			}
 		}
 	}
-	
+
 	/**
 	 * @method private
 	 * @name _onRespond
@@ -147,7 +147,7 @@
 			pub.disable();
 		}
 	}
-	
+
 	/**
 	 * @method private
 	 * @name _onClick
@@ -157,14 +157,14 @@
 	function _onClick(e) {
 		e.preventDefault();
 		e.stopPropagation();
-		
+
 		if (data.$body.hasClass("shifter-open")) {
 			pub.close();
 		} else {
 			pub.open();
 		}
 	}
-	
+
 	$.shifter = function(method) {
 		if (pub[method]) {
 			return pub[method].apply(this, Array.prototype.slice.call(arguments, 1));
