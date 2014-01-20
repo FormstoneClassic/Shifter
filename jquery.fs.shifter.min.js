@@ -1,5 +1,5 @@
 /* 
- * Shifter v3.0.1 - 2014-01-13 
+ * Shifter v3.0.2 - 2014-01-20 
  * A jQuery plugin for simple slide-out mobile navigation. Part of the Formstone Library. 
  * http://formstone.it/shifter/ 
  * 
