@@ -70,7 +70,7 @@
 	}
 
 	/* Open */
-	.shifter-open .shifter-navigation { pointer-events: all; z-index: 100\9; /* IE 9- */
+	.shifter-open .shifter-navigation { pointer-events: all; z-index: 1\9; /* IE9 */
 		-webkit-transform: translate3D(0px, 0px, 0px);
 		   -moz-transform: translate3D(0px, 0px, 0px);
 		    -ms-transform: translate3D(0px, 0px, 0px);
