@@ -23,7 +23,7 @@
 		close: function() {
 			if (initialized) {
 				data.$body.removeClass("shifter-open");
-				data.$page.off(".shifter");
+				data.$shifts.off(".shifter");
 				// Close mobile keyboard if open
 				data.$nav.find("input").trigger("blur");
 			}
@@ -93,7 +93,7 @@
 		open: function() {
 			if (initialized) {
 				data.$body.addClass("shifter-open");
-				data.$page.one("touchstart.shifter click.shifter", _onClick);
+				data.$shifts.one("touchstart.shifter click.shifter", _onClick);
 			}
 		}
 	};
@@ -109,10 +109,10 @@
 		options = $.extend(options, opts || {});
 
 		data.$body = $("body");
-		data.$page = $(".shifter-page");
+		data.$shifts = $(".shifter-header, .shifter-page");
 		data.$nav  = $(".shifter-navigation");
 
-		if (data.$page.length > 0 && data.$nav.length > 0) {
+		if (data.$shifts.length > 0 && data.$nav.length > 0) {
 			initialized = true;
 
 			data.$body.addClass("shifter")
