@@ -1,5 +1,5 @@
 /* 
- * Shifter v3.0.4 - 2014-04-18 
+ * Shifter v3.0.5 - 2014-04-22 
  * A jQuery plugin for simple slide-out mobile navigation. Part of the Formstone Library. 
  * http://formstone.it/shifter/ 
  * 
@@ -113,24 +113,25 @@
 	 * @param opts [object] "Initialization options"
 	 */
 	function _init(opts) {
-		// Local options
-		options = $.extend(options, opts || {});
+		if (!initialized) {
+			options = $.extend(options, opts || {});
 
-		data.$body = $("body");
-		data.$shifts = $(".shifter-header, .shifter-page");
-		data.$nav  = $(".shifter-navigation");
+			data.$body = $("body");
+			data.$shifts = $(".shifter-header, .shifter-page");
+			data.$nav  = $(".shifter-navigation");
 
-		if (data.$shifts.length > 0 && data.$nav.length > 0) {
-			initialized = true;
+			if (data.$shifts.length > 0 && data.$nav.length > 0) {
+				initialized = true;
 
-			data.$body.addClass("shifter")
-					  .on("touchstart.shifter click.shifter", ".shifter-handle", _onClick);
+				data.$body.addClass("shifter")
+						  .on("touchstart.shifter click.shifter", ".shifter-handle", _onClick);
 
-			// Navtive MQ Support
-			if (window.matchMedia !== undefined) {
-				data.mediaQuery = window.matchMedia("(max-width:" + (options.maxWidth === Infinity ? "100000px" : options.maxWidth) + ")");
-				data.mediaQuery.addListener(_onRespond);
-				_onRespond();
+				// Navtive MQ Support
+				if (window.matchMedia !== undefined) {
+					data.mediaQuery = window.matchMedia("(max-width:" + (options.maxWidth === Infinity ? "100000px" : options.maxWidth) + ")");
+					data.mediaQuery.addListener(_onRespond);
+					_onRespond();
+				}
 			}
 		}
 	}

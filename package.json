@@ -2,7 +2,7 @@
   "name": "Shifter",
   "id": "shifter",
   "codename": "jquery.fs.shifter",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "A jQuery plugin for simple slide-out mobile navigation. Part of the Formstone Library.",
   "keywords": [
   	"responsive",
