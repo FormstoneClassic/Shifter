@@ -1,7 +1,16 @@
+/*
+ * Shifter v3.0.5 - 2014-04-22
+ * A jQuery plugin for simple slide-out mobile navigation. Part of the Formstone Library.
+ * http://formstone.it/shifter/
+ *
+ * Copyright 2014 Ben Plum; MIT Licensed
+ */
+
 ;(function ($, window) {
 	"use strict";
 
 	var initialized = false,
+		hasTouched = false,
 		data = {};
 
 	/**
@@ -151,11 +160,28 @@
 		e.preventDefault();
 		e.stopPropagation();
 
-		if (data.$body.hasClass("shifter-open")) {
-			pub.close();
-		} else {
-			pub.open();
+		if (!hasTouched) {
+			if (data.$body.hasClass("shifter-open")) {
+				pub.close();
+			} else {
+				pub.open();
+			}
 		}
+
+		if (e.type === "touchstart") {
+			hasTouched = true;
+
+			setTimeout(_resetTouch, 500);
+		}
+	}
+
+	/**
+	 * @method private
+	 * @name _resetTouch
+	 * @description Resets touch state
+	 */
+	function _resetTouch() {
+		hasTouched = false;
 	}
 
 	$.shifter = function(method) {
