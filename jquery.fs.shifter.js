@@ -26,7 +26,8 @@
 	 * @param maxWidth [string] <'980px'> "Width at which to auto-disable plugin"
 	 */
 	var options = {
-		maxWidth: "980px"
+		maxWidth: "980px",
+		appearFromLeft: false
 	};
 
 	var pub = {
@@ -54,7 +55,7 @@
 		 */
 		enable: function() {
 			if (initialized) {
-				data.$body.addClass("shifter-active");
+				options.appearFromLeft ? data.$body.addClass("shifter-active shifter-left") : data.$body.addClass("shifter-active");
 			}
 		},
 
@@ -77,7 +78,7 @@
 		 */
 		destroy: function() {
 			if (initialized) {
-				data.$body.removeClass("shifter shifter-active shifter-open")
+				data.$body.removeClass("shifter shifter-active shifter-open shifter-left")
 					      .off("touchstart.shifter click.shifter");
 
 				// Navtive MQ Support
