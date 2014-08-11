@@ -1,12 +1,12 @@
 /* 
- * Shifter v3.0.6 - 2014-07-30 
+ * Shifter v3.0.7 - 2014-08-11 
  * A jQuery plugin for simple slide-out mobile navigation. Part of the Formstone Library. 
  * http://formstone.it/shifter/ 
  * 
  * Copyright 2014 Ben Plum; MIT Licensed 
  */ 
 
- 	.shifter-open { overflow: hidden !important; }
+ 	.shifter-open { overflow: hidden !important; height: 100% !important; }
 	.shifter-open .shifter-page *,
 	.shifter-open .shifter-header * { pointer-events: none !important; }
 

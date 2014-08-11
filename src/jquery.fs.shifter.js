@@ -31,6 +31,7 @@
 		 */
 		close: function() {
 			if (initialized) {
+				data.$html.removeClass("shifter-open");
 				data.$body.removeClass("shifter-open");
 				data.$shifts.off(".shifter");
 				// Close mobile keyboard if open
@@ -69,6 +70,7 @@
 		 */
 		destroy: function() {
 			if (initialized) {
+				data.$html.removeClass("shifter-open");
 				data.$body.removeClass("shifter shifter-active shifter-open")
 					      .off("touchstart.shifter click.shifter");
 
@@ -101,6 +103,7 @@
 		 */
 		open: function() {
 			if (initialized) {
+				data.$html.addClass("shifter-open");
 				data.$body.addClass("shifter-open");
 				data.$shifts.one("touchstart.shifter click.shifter", _onClick);
 			}
@@ -117,6 +120,7 @@
 		if (!initialized) {
 			options = $.extend(options, opts || {});
 
+			data.$html = $("html");
 			data.$body = $("body");
 			data.$shifts = $(".shifter-header, .shifter-page");
 			data.$nav  = $(".shifter-navigation");

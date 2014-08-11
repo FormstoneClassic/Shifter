@@ -1,4 +1,4 @@
- 	.shifter-open { overflow: hidden !important; }
+	.shifter-open { overflow: hidden !important; }
 	.shifter-open .shifter-page *,
 	.shifter-open .shifter-header * { pointer-events: none !important; }
 
@@ -82,6 +82,11 @@
 		    -ms-transform: translate3D(0px, 0px, 0px);
 		     -o-transform: translate3D(0px, 0px, 0px);
 		        transform: translate3D(0px, 0px, 0px);
+	}
+
+	/* IE 9/10 */
+	@media screen and (min-width:0\0) {
+		.shifter-open { overflow: hidden !important; height: 100% !important; }
 	}
 
 	/* IE 10 ONLY */
