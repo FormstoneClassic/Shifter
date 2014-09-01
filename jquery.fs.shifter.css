@@ -1,5 +1,5 @@
 /* 
- * Shifter v3.0.8 - 2014-09-01 
+ * Shifter v3.0.9 - 2014-09-01 
  * A jQuery plugin for simple slide-out mobile navigation. Part of the Formstone Library. 
  * http://formstone.it/shifter/ 
  * 
@@ -17,6 +17,7 @@
 	.shifter-active .shifter-page,
 	.shifter-active .shifter-header {
 		-webkit-transform: translate3D(0, 0, 0);
+			-ms-transform: translate3D(0, 0, 0);
 		        transform: translate3D(0, 0, 0);
 	}
 	.shifter-active .shifter-navigation { background: #fff; display: block; height: 100%; opacity: 1; pointer-events: none; position: fixed; top: 0; width: 270px; z-index: 0; }
@@ -41,30 +42,35 @@
 	/* Right / Default */
 	.shifter-active .shifter-navigation { right: 0;
 		-webkit-transform: translate3D(0, 0, 0);
+			-ms-transform: translate3D(0, 0, 0);
 		        transform: translate3D(0, 0, 0);
 	}
 
 	.shifter-open .shifter-page,
 	.shifter-open .shifter-header {
 		-webkit-transform: translate3D(-270, 0, 0);
+			-ms-transform: translate3D(-270, 0, 0);
 		        transform: translate3D(-270, 0, 0);
 	}
 
 	/* Left */
 	.shifter-active.shifter-left .shifter-navigation { left: 0;
 		-webkit-transform: translate3D(0, 0, 0);
+			-ms-transform: translate3D(0, 0, 0);
 		        transform: translate3D(0, 0, 0);
 	}
 
 	.shifter-active.shifter-left.shifter-open .shifter-page,
 	.shifter-active.shifter-left.shifter-open .shifter-header {
 		-webkit-transform: translate3D(270px, 0, 0);
+			-ms-transform: translate3D(270px, 0, 0);
 		        transform: translate3D(270px, 0, 0);
 	}
 
 	/* Open */
 	.shifter-open .shifter-navigation { pointer-events: all; z-index: 1\9; /* IE9 */
 		-webkit-transform: translate3D(0, 0, 0);
+			-ms-transform: translate3D(0, 0, 0);
 		        transform: translate3D(0, 0, 0);
 	}
 
