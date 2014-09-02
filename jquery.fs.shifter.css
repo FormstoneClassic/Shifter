@@ -1,5 +1,5 @@
 /* 
- * Shifter v3.0.9 - 2014-09-01 
+ * Shifter v3.0.10 - 2014-09-02 
  * A jQuery plugin for simple slide-out mobile navigation. Part of the Formstone Library. 
  * http://formstone.it/shifter/ 
  * 
@@ -48,9 +48,9 @@
 
 	.shifter-open .shifter-page,
 	.shifter-open .shifter-header {
-		-webkit-transform: translate3D(-270, 0, 0);
-			-ms-transform: translate3D(-270, 0, 0);
-		        transform: translate3D(-270, 0, 0);
+		-webkit-transform: translate3D(-270px, 0, 0);
+			-ms-transform: translate3D(-270px, 0, 0);
+		        transform: translate3D(-270px, 0, 0);
 	}
 
 	/* Left */
