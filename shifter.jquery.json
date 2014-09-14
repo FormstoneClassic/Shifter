@@ -1,6 +1,6 @@
 {
   "name": "shifter",
-  "version": "3.0.10",
+  "version": "3.0.11",
   "title": "Shifter",
   "author": {
     "name": "Ben Plum",
@@ -25,12 +25,11 @@
     "ui",
     "javascript",
     "jquery",
-    "formstone",
-    "benplum"
+    "formstone"
   ],
   "docs": "http://formstone.it/shifter/",
   "demo": "http://formstone.it/shifter/",
-  "download": "https://github.com/benplum/Shifter",
-  "bugs": "https://github.com/benplum/Shifter/issues",
+  "download": "https://github.com/Formstone/Shifter",
+  "bugs": "https://github.com/Formstone/Shifter/issues",
   "homepage": "http://formstone.it/shifter/"
 }

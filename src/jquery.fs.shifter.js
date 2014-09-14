@@ -91,6 +91,7 @@
 		 */
 		disable: function() {
 			if (initialized) {
+				pub.close();
 				data.$body.removeClass("shifter-active");
 			}
 		},

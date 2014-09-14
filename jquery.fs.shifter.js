@@ -1,5 +1,5 @@
 /* 
- * Shifter v3.0.10 - 2014-09-02 
+ * Shifter v3.0.11 - 2014-09-14 
  * A jQuery plugin for simple slide-out mobile navigation. Part of the Formstone Library. 
  * http://formstone.it/shifter/ 
  * 
@@ -99,6 +99,7 @@
 		 */
 		disable: function() {
 			if (initialized) {
+				pub.close();
 				data.$body.removeClass("shifter-active");
 			}
 		},
