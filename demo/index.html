@@ -1,34 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 		<title>Shifter Demo</title>
 
-		<link href="http://formstone.it/css/demo.css" rel="stylesheet" type="text/css" media="all" />
+		<!-- Modernizer -->
+		<script src="http://formstone.it/js/modernizr.js"></script>
 
-		<!--[if LTE IE 8]>
-			<link href="http://formstone.it/css/demo.ie.css" rel="stylesheet" type="text/css" media="all" />
-		<![endif]-->
-
+		<!-- Demo Resources -->
+		<link href="http://formstone.it/css/demo.css" rel="stylesheet" type="text/css" media="all">
 		<script src="http://formstone.it/js/demo.js"></script>
 
-		<!--[if LTE IE 9]>
-			<script src="ie/html5.js"></script>
+		<!--[if IE 8]>
+        	<script>var IE8 = true;</script>
+        	<script src="http://formstone.it/js/site.ie8.js"></script>
+			<link rel="stylesheet" href="http://formstone.it/css/demo.ie8.css">
 		<![endif]-->
 		<!--[if IE 9]>
-			<script src="ie/matchMedia.ie9.js"></script>
-		<![endif]-->
-		<!--[if LTE IE 8]>
-			<script src="ie/matchMedia.ie8.js"></script>
+        	<script>var IE9 = true;</script>
+        	<script src="http://formstone.it/js/site.ie9.js"></script>
 		<![endif]-->
 
-		<link href="../jquery.fs.shifter.css" rel="stylesheet" type="text/css" media="all" />
+		<link href="../jquery.fs.shifter.css" rel="stylesheet" type="text/css" media="all">
 		<script src="../jquery.fs.shifter.js"></script>
 
 		<style>
-			.shifter .shifter-handle { margin: -5px 0 0; }
+			.shifter .shifter-handle { float: right; margin: -5px 0 0; }
 			.shifter .shifter-navigation { background: #f9f9f9; padding: 100px 30px 30px; }
 			.shifter .shifter-navigation a { color: #666; display: block; font-size: 18px; margin: 0 0 15px; }
 		</style>
@@ -56,7 +55,7 @@
 					<header class="header">
 						<h1>Shifter Demo</h1>
 						<!-- <p>A technical demonstration of the jQuery plugin.</p> -->
-						<br />
+						<br>
 						<a href="http://formstone.it/shifter/" class="button">View Documentation</a>
 					</header>
 
@@ -92,7 +91,7 @@
 
 					<h5>Demo</h5>
 					<p>Click or tap the handle at the top-right of this page!</p>
-					<br />
+					<br>
 
 					<!-- IE -->
 					<h2>IE Support</h2>
