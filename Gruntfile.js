@@ -98,10 +98,14 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+        watch: {
+            files: ["src/*.less"],
+            tasks: ["less"]
+        },
 		// Auto Prefixer
 		autoprefixer: {
 			options: {
-				borwsers: [ '> 1%', 'last 5 versions', 'Firefox ESR', 'Opera 12.1', '>= ie 8' ]
+				browsers: [ '> 1%', 'last 5 versions', 'Firefox ESR', 'Opera 12.1', 'IE 8', 'IE 9' ]
 			},
 			no_dest: {
 				 src: '*.css'
@@ -141,6 +145,7 @@ module.exports = function(grunt) {
 
 	// Load tasks
 	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-jquerymanifest');
@@ -169,5 +174,6 @@ module.exports = function(grunt) {
 
 	// Default task.
 	grunt.registerTask('default', [ 'jshint', 'copy', 'uglify', 'jquerymanifest', 'less', 'autoprefixer', 'usebanner', 'sync', 'buildReadme' ]);
+	grunt.registerTask('watcher', [ 'watch' ]);
 
 };
