@@ -1,5 +1,5 @@
 /* 
- * Shifter v3.1.0 - 2014-10-24 
+ * Shifter v3.1.1 - 2014-10-26 
  * A jQuery plugin for simple slide-out mobile navigation. Part of the Formstone Library. 
  * http://formstone.it/shifter/ 
  * 
@@ -25,9 +25,12 @@
 	 * @options
 	 * @param maxWidth [string] <'980px'> "Width at which to auto-disable plugin"
 	 */
-	var options = {
-		maxWidth: "980px"
-	};
+    var options = {
+        maxWidth: "980px",
+        shifts: ".shifter-header, .shifter-page",
+        nav: ".shifter-navigation",
+        handle: ".shifter-handle"
+    };
 
 	var pub = {
 
@@ -125,30 +128,30 @@
 	 * @description Initializes plugin
 	 * @param opts [object] "Initialization options"
 	 */
-	function _init(opts) {
-		if (!initialized) {
-			options = $.extend(options, opts || {});
+    function _init(opts) {
+        if (!initialized) {
+            options = $.extend(options, opts || {});
 
-			data.$html = $("html");
-			data.$body = $("body");
-			data.$shifts = $(".shifter-header, .shifter-page");
-			data.$nav  = $(".shifter-navigation");
+            data.$html = $("html");
+            data.$body = $("body");
+            data.$shifts = $(options.shifts);
+            data.$nav = $(options.nav);
 
-			if (data.$shifts.length > 0 && data.$nav.length > 0) {
-				initialized = true;
+            if (data.$shifts.length > 0 && data.$nav.length > 0) {
+                initialized = true;
 
-				data.$body.addClass("shifter")
-						  .on("touchstart.shifter click.shifter", ".shifter-handle", _onClick);
+                data.$body.addClass("shifter")
+                    .on("touchstart.shifter click.shifter", options.handle, _onClick);
 
-				// Navtive MQ Support
-				if (window.matchMedia !== undefined) {
-					data.mediaQuery = window.matchMedia("(max-width:" + (options.maxWidth === Infinity ? "100000px" : options.maxWidth) + ")");
-					data.mediaQuery.addListener(_onRespond);
-					_onRespond();
-				}
-			}
-		}
-	}
+                // Navtive MQ Support
+                if (window.matchMedia !== undefined) {
+                    data.mediaQuery = window.matchMedia("(max-width:" + (options.maxWidth === Infinity ? "100000px" : options.maxWidth) + ")");
+                    data.mediaQuery.addListener(_onRespond);
+                    _onRespond();
+                }
+            }
+        }
+    }
 
 	/**
 	 * @method private
