@@ -1,17 +1,21 @@
-/*
- * Shifter v3.0.5 - 2014-04-22
- * A jQuery plugin for simple slide-out mobile navigation. Part of the Formstone Library.
- * http://formstone.it/shifter/
- *
- * Copyright 2014 Ben Plum; MIT Licensed
- */
-
 ;(function ($, window) {
 	"use strict";
 
-	var initialized = false,
+	var namespace = "shifter",
+		initialized = false,
 		hasTouched = false,
-		data = {};
+		data = {},
+		classes = {
+			handle: "shifter-handle",
+			page: "shifter-page",
+			header: "shifter-header",
+			navigation: "shifter-navigation",
+			isActive: "shifter-active",
+			isOpen: "shifter-open"
+		},
+		events = {
+			click: "touchstart." + namespace + " click." + namespace
+		};
 
 	/**
 	 * @options
@@ -31,9 +35,9 @@
 		 */
 		close: function() {
 			if (initialized) {
-				data.$html.removeClass("shifter-open");
-				data.$body.removeClass("shifter-open");
-				data.$shifts.off(".shifter");
+				data.$html.removeClass(classes.isOpen);
+				data.$body.removeClass(classes.isOpen);
+				data.$shifts.off("." + namespace);
 				// Close mobile keyboard if open
 				data.$nav.find("input").trigger("blur");
 			}
@@ -47,19 +51,8 @@
 		 */
 		enable: function() {
 			if (initialized) {
-				data.$body.addClass("shifter-active");
+				data.$body.addClass(classes.isActive);
 			}
-		},
-
-		/**
-		 * @method
-		 * @name defaults
-		 * @description Sets default plugin options
-		 * @param opts [object] <{}> "Options object"
-		 * @example $.shifter("defaults", opts);
-		 */
-		defaults: function(opts) {
-			options = $.extend(options, opts || {});
 		},
 
 		/**
@@ -70,16 +63,17 @@
 		 */
 		destroy: function() {
 			if (initialized) {
-				data.$html.removeClass("shifter-open");
-				data.$body.removeClass("shifter shifter-active shifter-open")
-					      .off("touchstart.shifter click.shifter");
+				data.$html.removeClass(classes.isOpen);
+				data.$body.removeClass( [classes.isActive, classes.isOpen].join(" ") )
+					      .off(events.click);
 
 				// Navtive MQ Support
 				if (window.matchMedia !== undefined) {
-					data.mediaQuery.removeListener(_onRespond);
+					data.mediaQuery.removeListener(onRespond);
 				}
 
 				data = {};
+				initialized = false;
 			}
 		},
 
@@ -92,7 +86,7 @@
 		disable: function() {
 			if (initialized) {
 				pub.close();
-				data.$body.removeClass("shifter-active");
+				data.$body.removeClass(classes.isActive);
 			}
 		},
 
@@ -104,39 +98,38 @@
 		 */
 		open: function() {
 			if (initialized) {
-				data.$html.addClass("shifter-open");
-				data.$body.addClass("shifter-open");
-				data.$shifts.one("touchstart.shifter click.shifter", _onClick);
+				data.$html.addClass(classes.isOpen);
+				data.$body.addClass(classes.isOpen);
+				data.$shifts.one(events.click, onClick);
 			}
 		}
 	};
 
 	/**
 	 * @method private
-	 * @name _init
+	 * @name init
 	 * @description Initializes plugin
 	 * @param opts [object] "Initialization options"
 	 */
-	function _init(opts) {
+	function init(opts) {
 		if (!initialized) {
-			options = $.extend(options, opts || {});
+			data = $.extend({}, options, opts || {});
 
 			data.$html = $("html");
 			data.$body = $("body");
-			data.$shifts = $(".shifter-header, .shifter-page");
-			data.$nav  = $(".shifter-navigation");
+			data.$shifts = $( "." + [ classes.page, classes.header ].join(", .") );
+			data.$nav = $( "." + classes.navigation );
 
 			if (data.$shifts.length > 0 && data.$nav.length > 0) {
 				initialized = true;
 
-				data.$body.addClass("shifter")
-						  .on("touchstart.shifter click.shifter", ".shifter-handle", _onClick);
+				data.$body.on(events.click, "." + classes.handle, onClick);
 
 				// Navtive MQ Support
 				if (window.matchMedia !== undefined) {
-					data.mediaQuery = window.matchMedia("(max-width:" + (options.maxWidth === Infinity ? "100000px" : options.maxWidth) + ")");
-					data.mediaQuery.addListener(_onRespond);
-					_onRespond();
+					data.mediaQuery = window.matchMedia("(max-width:" + (data.maxWidth === Infinity ? "100000px" : data.maxWidth) + ")");
+					data.mediaQuery.addListener(onRespond);
+					onRespond();
 				}
 			}
 		}
@@ -144,10 +137,10 @@
 
 	/**
 	 * @method private
-	 * @name _onRespond
+	 * @name onRespond
 	 * @description Handles media query match change
 	 */
-	function _onRespond() {
+	function onRespond() {
 		if (data.mediaQuery.matches) {
 			pub.enable();
 		} else {
@@ -157,16 +150,16 @@
 
 	/**
 	 * @method private
-	 * @name _onClick
+	 * @name onClick
 	 * @description Determines proper click / touch action
 	 * @param e [object] "Event data"
 	 */
-	function _onClick(e) {
+	function onClick(e) {
 		e.preventDefault();
 		e.stopPropagation();
 
 		if (!hasTouched) {
-			if (data.$body.hasClass("shifter-open")) {
+			if (data.$body.hasClass(classes.isOpen)) {
 				pub.close();
 			} else {
 				pub.open();
@@ -176,16 +169,16 @@
 		if (e.type === "touchstart") {
 			hasTouched = true;
 
-			setTimeout(_resetTouch, 500);
+			setTimeout(resetTouch, 500);
 		}
 	}
 
 	/**
 	 * @method private
-	 * @name _resetTouch
+	 * @name resetTouch
 	 * @description Resets touch state
 	 */
-	function _resetTouch() {
+	function resetTouch() {
 		hasTouched = false;
 	}
 
@@ -193,7 +186,7 @@
 		if (pub[method]) {
 			return pub[method].apply(this, Array.prototype.slice.call(arguments, 1));
 		} else if (typeof method === 'object' || !method) {
-			return _init.apply(this, arguments);
+			return init.apply(this, arguments);
 		}
 		return this;
 	};
