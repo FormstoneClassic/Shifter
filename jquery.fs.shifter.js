@@ -1,5 +1,5 @@
 /* 
- * Shifter v3.2.0 - 2014-10-27 
+ * Shifter v3.1.2 - 2014-10-28 
  * A jQuery plugin for simple slide-out mobile navigation. Part of the Formstone Library. 
  * http://formstone.it/shifter/ 
  * 
@@ -18,7 +18,7 @@
 			page: "shifter-page",
 			header: "shifter-header",
 			navigation: "shifter-navigation",
-			isActive: "shifter-active",
+			isEnabled: "shifter-enabled",
 			isOpen: "shifter-open"
 		},
 		events = {
@@ -45,7 +45,7 @@
 			if (initialized) {
 				data.$html.removeClass(classes.isOpen);
 				data.$body.removeClass(classes.isOpen);
-				data.$shifts.off("." + namespace);
+				data.$shifts.off( classify(namespace) );
 				// Close mobile keyboard if open
 				data.$nav.find("input").trigger("blur");
 			}
@@ -59,7 +59,7 @@
 		 */
 		enable: function() {
 			if (initialized) {
-				data.$body.addClass(classes.isActive);
+				data.$body.addClass(classes.isEnabled);
 			}
 		},
 
@@ -72,7 +72,7 @@
 		destroy: function() {
 			if (initialized) {
 				data.$html.removeClass(classes.isOpen);
-				data.$body.removeClass( [classes.isActive, classes.isOpen].join(" ") )
+				data.$body.removeClass( [classes.isEnabled, classes.isOpen].join(" ") )
 					      .off(events.click);
 
 				// Navtive MQ Support
@@ -94,7 +94,7 @@
 		disable: function() {
 			if (initialized) {
 				pub.close();
-				data.$body.removeClass(classes.isActive);
+				data.$body.removeClass(classes.isEnabled);
 			}
 		},
 
@@ -125,13 +125,13 @@
 
 			data.$html = $("html");
 			data.$body = $("body");
-			data.$shifts = $( "." + [ classes.page, classes.header ].join(", .") );
-			data.$nav = $( "." + classes.navigation );
+			data.$shifts = $( [classify(classes.page), classify(classes.header)].join(", ") );
+			data.$nav = $( classify(classes.navigation) );
 
 			if (data.$shifts.length > 0 && data.$nav.length > 0) {
 				initialized = true;
 
-				data.$body.on(events.click, "." + classes.handle, onClick);
+				data.$body.on(events.click, classify(classes.handle), onClick);
 
 				// Navtive MQ Support
 				if (window.matchMedia !== undefined) {
@@ -190,7 +190,18 @@
 		hasTouched = false;
 	}
 
-	$.shifter = function(method) {
+	/**
+	 * @method private
+	 * @name classify
+	 * @description Create class selector from text
+	 * @param text [string] "Text to convert"
+	 * @return [string] "New class name"
+	 */
+	function classify(text) {
+		return "." + text;
+	}
+
+	$[namespace] = function(method) {
 		if (pub[method]) {
 			return pub[method].apply(this, Array.prototype.slice.call(arguments, 1));
 		} else if (typeof method === 'object' || !method) {
