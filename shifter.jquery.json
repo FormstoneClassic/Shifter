@@ -27,9 +27,9 @@
     "jquery",
     "formstone"
   ],
-  "docs": "http://formstone.it/shifter/",
-  "demo": "http://formstone.it/shifter/",
-  "download": "https://github.com/Formstone/Shifter",
-  "bugs": "https://github.com/Formstone/Shifter/issues",
-  "homepage": "http://formstone.it/shifter/"
+  "docs": "http://classic.formstone.it/shifter/",
+  "demo": "http://classic.formstone.it/shifter/",
+  "download": "https://github.com/FormstoneClassic/Shifter",
+  "bugs": "https://github.com/FormstoneClassic/Shifter/issues",
+  "homepage": "http://classic.formstone.it/shifter/"
 }

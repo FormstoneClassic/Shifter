@@ -8,7 +8,7 @@
     "url": "http://www.benplum.com"
   },
   "license": "MIT",
-  "homepage": "http://formstone.it/shifter/",
+  "homepage": "http://classic.formstone.it/shifter/",
   "main": [
     "jquery.fs.shifter.js",
     "jquery.fs.shifter.css"

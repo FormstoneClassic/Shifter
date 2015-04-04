@@ -1,29 +1,27 @@
 /* 
- * Shifter v3.1.2 - 2014-10-28 
+ * Shifter v3.1.2 - 2015-04-04 
  * A jQuery plugin for simple slide-out mobile navigation. Part of the Formstone Library. 
- * http://formstone.it/shifter/ 
+ * http://classic.formstone.it/shifter/ 
  * 
- * Copyright 2014 Ben Plum; MIT Licensed 
+ * Copyright 2015 Ben Plum; MIT Licensed 
  */
 
 ;(function ($, window) {
 	"use strict";
 
-	var namespace = "shifter",
-		initialized = false,
-		hasTouched = false,
-		data = {},
-		classes = {
-			handle: "shifter-handle",
-			page: "shifter-page",
-			header: "shifter-header",
-			navigation: "shifter-navigation",
-			isEnabled: "shifter-enabled",
-			isOpen: "shifter-open"
-		},
-		events = {
-			click: "touchstart." + namespace + " click." + namespace
-		};
+	var namespace                = "shifter",
+		initialized              = false,
+		hasTouched               = false,
+		data                     = {},
+		// Classes
+		class_handle             = namespace + "-handle",
+		class_page               = namespace + "-page",
+		class_header             = namespace + "-header",
+		class_navigation         = namespace + "-navigation",
+		class_isEnabled          = namespace + "-enabled",
+		class_isOpen             = namespace + "-open",
+		// Events - Listen
+		event_clickTouchStart    = "touchstart." + namespace + " click." + namespace;
 
 	/**
 	 * @options
@@ -43,8 +41,8 @@
 		 */
 		close: function() {
 			if (initialized) {
-				data.$html.removeClass(classes.isOpen);
-				data.$body.removeClass(classes.isOpen);
+				data.$html.removeClass(class_isOpen);
+				data.$body.removeClass(class_isOpen);
 				data.$shifts.off( classify(namespace) );
 				// Close mobile keyboard if open
 				data.$nav.find("input").trigger("blur");
@@ -59,7 +57,7 @@
 		 */
 		enable: function() {
 			if (initialized) {
-				data.$body.addClass(classes.isEnabled);
+				data.$body.addClass(class_isEnabled);
 			}
 		},
 
@@ -71,9 +69,9 @@
 		 */
 		destroy: function() {
 			if (initialized) {
-				data.$html.removeClass(classes.isOpen);
-				data.$body.removeClass( [classes.isEnabled, classes.isOpen].join(" ") )
-					      .off(events.click);
+				data.$html.removeClass(class_isOpen);
+				data.$body.removeClass( [class_isEnabled, class_isOpen].join(" ") )
+					      .off(event_clickTouchStart);
 
 				// Navtive MQ Support
 				if (window.matchMedia !== undefined) {
@@ -94,7 +92,7 @@
 		disable: function() {
 			if (initialized) {
 				pub.close();
-				data.$body.removeClass(classes.isEnabled);
+				data.$body.removeClass(class_isEnabled);
 			}
 		},
 
@@ -106,9 +104,9 @@
 		 */
 		open: function() {
 			if (initialized) {
-				data.$html.addClass(classes.isOpen);
-				data.$body.addClass(classes.isOpen);
-				data.$shifts.one(events.click, onClick);
+				data.$html.addClass(class_isOpen);
+				data.$body.addClass(class_isOpen);
+				data.$shifts.one(event_clickTouchStart, onClickTouchStart);
 			}
 		}
 	};
@@ -123,15 +121,15 @@
 		if (!initialized) {
 			data = $.extend({}, options, opts || {});
 
-			data.$html = $("html");
-			data.$body = $("body");
-			data.$shifts = $( [classify(classes.page), classify(classes.header)].join(", ") );
-			data.$nav = $( classify(classes.navigation) );
+			data.$html      = $("html");
+			data.$body      = $("body");
+			data.$shifts    = $( [classify(class_page), classify(class_header)].join(", ") );
+			data.$nav       = $( classify(class_navigation) );
 
 			if (data.$shifts.length > 0 && data.$nav.length > 0) {
 				initialized = true;
 
-				data.$body.on(events.click, classify(classes.handle), onClick);
+				data.$body.on(event_clickTouchStart, classify(class_handle), onClickTouchStart);
 
 				// Navtive MQ Support
 				if (window.matchMedia !== undefined) {
@@ -158,16 +156,16 @@
 
 	/**
 	 * @method private
-	 * @name onClick
+	 * @name onClickTouchStart
 	 * @description Determines proper click / touch action
 	 * @param e [object] "Event data"
 	 */
-	function onClick(e) {
+	function onClickTouchStart(e) {
 		e.preventDefault();
 		e.stopPropagation();
 
 		if (!hasTouched) {
-			if (data.$body.hasClass(classes.isOpen)) {
+			if (data.$body.hasClass(class_isOpen)) {
 				pub.close();
 			} else {
 				pub.open();
